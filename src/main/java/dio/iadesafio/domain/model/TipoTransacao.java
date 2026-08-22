@@ -1,4 +1,4 @@
-package dio.iadesafio.domain;
+package dio.iadesafio.domain.model;
 
 public enum TipoTransacao {
     RECEITA,

@@ -1,4 +1,4 @@
-package dio.iadesafio.domain;
+package dio.iadesafio.domain.model;
 
 import dio.iadesafio.domain.voz.ComandoVozId;
 import jakarta.persistence.*;
