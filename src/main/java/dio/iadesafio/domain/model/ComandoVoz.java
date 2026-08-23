@@ -51,4 +51,8 @@ public class ComandoVoz {
         this.mensagemErro = mensagemErro;
         this.finalizadoEm = LocalDateTime.now();
     }
+
+    public static ComandoVoz receber(ComandoVozId id) {
+        return new ComandoVoz(id);
+    }
 }
