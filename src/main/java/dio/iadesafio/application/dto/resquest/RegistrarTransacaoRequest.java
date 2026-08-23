@@ -1,4 +1,4 @@
-package dio.iadesafio.application.dto.response;
+package dio.iadesafio.application.dto.resquest;
 
 import dio.iadesafio.domain.model.Categoria;
 import dio.iadesafio.domain.model.TipoTransacao;
