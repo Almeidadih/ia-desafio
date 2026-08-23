@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: orcamento-voz
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/orcamento_voz}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: validate # o schema agora e' responsabilidade do Liquibase
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+      audio:
+        transcription:
+          options:
+            model: whisper-1
+
+  threads:
+    virtual:
+      enabled: true
+
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true # /transacoes aceita "despesa" e "DESPESA" no JSON
+
+app:
+  rabbitmq:
+    exchange: comando-voz.exchange
+    queue: comando-voz.queue
+    routing-key: comando-voz.recebido
+
+logging:
+  level:
+    com.seuprojeto.orcamentovoz: DEBUG
