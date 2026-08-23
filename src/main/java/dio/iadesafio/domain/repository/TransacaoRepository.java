@@ -17,7 +17,7 @@ public interface TransacaoRepository extends JpaRepository<Transacao, TransacaoI
 
     List<Transacao> findByCategoria(Categoria categoria)
             ;
-    List<Transacao> findBOrderByCriadaEmDesc(Pageable pageable);
+    List<Transacao> findAllByOrderByCriadaEmDesc(Pageable pageable);
 
     List<Transacao> findByCategoriaOrderByCriadaEmDesc(Categoria categoria, Pageable pageable);
 

@@ -1,5 +1,6 @@
 package dio.iadesafio.infrastructure.ia.tools;
 
+import dio.iadesafio.application.service.TransacaoService;
 import dio.iadesafio.domain.model.Categoria;
 import dio.iadesafio.infrastructure.ia.TranscricaoService;
 import org.slf4j.Logger;
@@ -15,9 +16,9 @@ import java.util.Locale;
 public class ConsultarGastoPorCategoriaTool {
     private static final Logger log = LoggerFactory.getLogger(ConsultarGastoPorCategoriaTool.class);
 
-    private final TranscricaoService transacaoService;
+    private final TransacaoService transacaoService;
 
-    public ConsultarGastoPorCategoriaTool(TranscricaoService transacaoService) {
+    public ConsultarGastoPorCategoriaTool(TransacaoService transacaoService) {
         this.transacaoService = transacaoService;
     }
 
@@ -29,7 +30,7 @@ public class ConsultarGastoPorCategoriaTool {
         Categoria categoriaEnum = Categoria.valueOf(categoria.toUpperCase());
         log.info("Tool consultarGastoPorCategoria chamada. categoria={}", categoriaEnum);
 
-        BigDecimal total = transacaoService.consultar
+        BigDecimal total = transacaoService.consultarGastoPorCategoria(categoriaEnum);
 
         return String.format(Locale.US, "Voce gastou R$ %.2f na categoria %s", total, categoriaEnum);
     }

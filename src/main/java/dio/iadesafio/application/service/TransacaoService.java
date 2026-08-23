@@ -1,5 +1,7 @@
 package dio.iadesafio.application.service;
 
+import dio.iadesafio.application.dto.response.ResumoPeriodoResponse;
+import dio.iadesafio.application.dto.response.SaldoResponse;
 import dio.iadesafio.domain.model.Categoria;
 import dio.iadesafio.domain.model.TipoTransacao;
 import dio.iadesafio.domain.model.Transacao;
