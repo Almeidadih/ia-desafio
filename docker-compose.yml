@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: orcamento-voz-postgres
+    environment:
+      POSTGRES_DB: orcamento_voz
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+      image: rabbitmq:3.13-management-alpine
+      container_name: orcamento-voz-rabbitmq
+      environment:
+        RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME:-guest}
+        RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
+      ports:
+        - "5672:5672"   # protocolo AMQP
+        - "15672:15672" # painel de administracao
+
+  redis:
+      image: redis:7-alpine
+      container_name: orcamento-voz-redis
+      ports:
+        - "6379:6379"
+
+volumes:
+    postgres_data:
