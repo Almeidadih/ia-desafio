@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="002-create-transacoes-table" author="diego">
+        <createTable tableName="transacoes">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="NUMERIC(19,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="criada_em" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="idx_transacoes_categoria" tableName="transacoes">
+            <column name="categoria"/>
+        </createIndex>
+
+        <createIndex indexName="idx_transacoes_tipo" tableName="transacoes">
+            <column name="tipo"/>
+        </createIndex>
+
+        <addCheckConstraint tableName="transacoes"
+                            constraintName="chk_transacoes_valor_positivo"
+                            checkCondition="valor > 0"/>
+    </changeSet>
+
+</databaseChangeLog>

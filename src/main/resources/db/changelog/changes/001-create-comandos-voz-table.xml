@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="001-create-comandos-voz-table" author="diego">
+        <createTable tableName="comandos_voz">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="texto_transcrito" type="TEXT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="mensagem_erro" type="TEXT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="recebido_em" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finalizado_em" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="idx_comandos_voz_status" tableName="comandos_voz">
+            <column name="status"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
